@@ -20,14 +20,21 @@ resetButton.addEventListener('click', function() {
     console.log(width, height);
 });
 
+canvasEl.addEventListener('click', function(event) {
+    const target = event.target;
+
+    if (target !== canvasEl) {
+        target.style.border = 'none';
+        target.style.backgroundColor = '#000000';
+    }
+});
 
 function createCanvas() {
     for (let i = 0; i < canvasSize; i++) {
         const div = document.createElement('div');
         div.classList.add('square');
-        // div.innerHTML = i + 1;
         
-        div.style.width = `${(100 / width)}%`
+        div.style.width = `${(100 / width)}%`;
         canvasEl.append(div);
     }
 }
