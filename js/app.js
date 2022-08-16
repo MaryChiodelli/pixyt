@@ -11,8 +11,9 @@ let canvasSize = width * height;
 const colors = [
     '#000000', '#FFFFFF', '#FC9A9C', '#ED3B3C', '#B01A1A', '#FEB168', '#F86817', '#BB390F', '#FDCC44', '#F3940E', '#AB490D'
 ];
+let selectedColor = '#000000';
 const colorItemEls = [];
-const colorDivEls = [];
+// const colorDivEls = [];
 
 colors.forEach(function(color) {
     const li = document.createElement('li');
@@ -26,7 +27,7 @@ colors.forEach(function(color) {
     colorList.append(li);
 
     colorItemEls.push(li);
-    colorDivEls.push(div);
+    // colorDivEls.push(div);
 });
 
 createCanvas();
@@ -47,16 +48,17 @@ canvasEl.addEventListener('click', function(event) {
 
     if (target !== canvasEl) {
         target.style.border = 'none';
-        target.style.backgroundColor = '#000000';
+        target.style.backgroundColor = selectedColor;
     }
 });
 
 colorList.addEventListener('click', function(event) {
     const target = event.target;
-    const bgColor = target.style.backgroundColor;
+    const selectedItem = target.parentElement;
     
-    if (target !== colorList) {
-        console.log(target, bgColor);
+    if (target !== colorList && !colorItemEls.includes(target)) {
+        // selectedItem.classList.add('selected');
+        selectedColor = target.style.backgroundColor;
     }
 });
 
