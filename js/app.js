@@ -9,7 +9,7 @@ let height = parseInt(heightInput.value);
 let canvasSize = width * height;
 
 const colors = [
-    '#000000', '#FFFFFF', '#FC9A9C', '#ED3B3C', '#B01A1A', '#FEB168', '#F86817', '#BB390F', '#FDCC44', '#F3940E', '#AB490D'
+    '', '#000000', '#FFFFFF', '#FC9A9C', '#ED3B3C', '#B01A1A', '#FEB168', '#F86817', '#BB390F', '#FDCC44', '#F3940E', '#AB490D'
 ];
 let selectedColor, selectedListItem;
 const colorItemEls = [];
@@ -25,9 +25,14 @@ colors.forEach(function(color, index) {
 
     if (index === 0) {
         li.classList.add('selected');
+        div.classList.add('erase');
 
         selectedColor = color;
         selectedListItem = li;
+    }
+
+    if (index === 2) {
+        div.style.border = '1px solid #606875';
     }
 
     li.append(div);
@@ -54,8 +59,14 @@ canvasEl.addEventListener('click', function(event) {
     const target = event.target;
 
     if (target !== canvasEl) {
-        target.style.border = 'none';
-        target.style.backgroundColor = selectedColor;
+        if (selectedColor === '') {
+            target.style.border = '1px solid #e2e2e2';
+            target.style.backgroundColor = '#F1F1F1';
+        }
+        else {
+            target.style.border = 'none';
+            target.style.backgroundColor = selectedColor;
+        }
     }
 });
 
