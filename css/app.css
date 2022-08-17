@@ -38,7 +38,6 @@ ul, ol, menu {
 
 .color-list {
     display: flex;
-    gap: .25rem;
 
     padding: .75rem;
     border-radius: .75rem;
