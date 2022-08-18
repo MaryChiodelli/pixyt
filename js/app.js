@@ -70,6 +70,32 @@ canvasEl.addEventListener('click', function(event) {
     }
 });
 
+let isClicked = false;
+canvasEl.addEventListener('mousedown', function(event) {
+    if (event.button === 0) {
+        isClicked = true;
+    }
+});
+canvasEl.addEventListener('mousemove', function(event) {
+    if (isClicked) {
+        const target = event.target;
+    
+        if (target !== canvasEl) {
+            if (selectedColor === '') {
+                target.style.border = '1px solid #e2e2e2';
+                target.style.backgroundColor = '#F1F1F1';
+            }
+            else {
+                target.style.border = 'none';
+                target.style.backgroundColor = selectedColor;
+            }
+        }
+    }
+});
+canvasEl.addEventListener('mouseup', function() {
+    isClicked = false;
+});
+
 colorList.addEventListener('click', function(event) {
     const target = event.target;
     
